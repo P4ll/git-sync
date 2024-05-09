@@ -1,1 +1,5 @@
 /target
+
+# obj files
+*.obj
+*.o
