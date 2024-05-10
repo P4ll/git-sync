@@ -1,20 +1,8 @@
-use std::error;
 use xshell::{Shell, cmd};
-
+use anyhow;
 use chrono::prelude::*;
 
-
-#[derive(Debug)]
-struct MyError;
-
-impl std::fmt::Display for MyError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "dfjdfdf")
-    }
-}
-
-
-fn sync_current_repo() -> Result<(), Box<dyn error::Error>> {
+fn sync_current_repo() -> anyhow::Result<()> {
     let sh = Shell::new()?;
     let branch = cmd!(sh, "git rev-parse --abbrev-ref HEAD").read()?;
     let dir_path = std::env::current_dir()?;
@@ -31,7 +19,7 @@ fn sync_current_repo() -> Result<(), Box<dyn error::Error>> {
 
 }
 
-fn main() -> Result<(), Box<dyn error::Error>> {
+fn main() -> anyhow::Result<()> {
     sync_current_repo()?;
     Ok(())
 }
