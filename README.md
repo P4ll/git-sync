@@ -1,1 +1,1 @@
-# Simple git sync util for git
+# Simple git sync util
